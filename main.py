@@ -3,6 +3,15 @@ import tkinter as tk
 
 class FramedTextApp:
     def __init__(self, initial_text, width=800, height=600, initial_size=10):
+        """
+        Инициализация приложения.
+
+        Args:
+            initial_text (str): Начальный текст, который будет отображен внутри двойной рамки.
+            width (int): Ширина окна.
+            height (int): Высота окна.
+            initial_size (int): Начальный размер шрифта.
+        """
         self.root = tk.Tk()
 
         # Устанавливаем размер холста и начальные значения
@@ -15,9 +24,13 @@ class FramedTextApp:
         self.font_size = initial_size
         self.draw_frame()
 
+        # Биндим клавиши
         self.root.bind('<KeyPress>', self.key_press_handler)
 
     def draw_frame(self):
+        """
+        Отрисовывает двойную рамку с текстом внутри холста.
+        """
         # Вычисляем начальные координаты
         frame_width = len(self.text) * self.font_size + 10
         frame_height = 3 * self.font_size
@@ -35,6 +48,12 @@ class FramedTextApp:
                                 font=("Arial", self.font_size))
 
     def key_press_handler(self, event):
+        """
+        Обработчик события нажатия клавиш.
+
+        Args:
+            event (tk.Event): Событие нажатия клавиши.
+        """
         if event.keysym == 'Escape':
             self.root.quit()
         if event.keysym == 'Right':
@@ -45,6 +64,9 @@ class FramedTextApp:
             self.draw_frame()
 
     def run(self):
+        """
+        Запуск приложения, начало цикла обработки событий.
+        """
         self.root.mainloop()
 
 
